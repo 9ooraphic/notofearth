@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="about/css/style3.css">
+    <link rel="stylesheet" href="https://use.typekit.net/ztk6yvb.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <title>about</title>
+</head>
+<body>
+    <body>
+    <div id="background-container"></div>
+
+    </div>
+    <div class="page-wrapper">
+        <div class="header">
+            <div class="nav-left">
+                <a href="about.html" class="nav-item">About</a>
+                <a href="archive.html" class="nav-item">Archive</a>
+                <a href="shop.html" class="nav-item">Shop</a>
+            </div>
+            <div class="nav-right">
+                <a class="nav-item" href="Search">
+                    <img src="img/search.png"alt="Search" class="nav-icon"/>
+                    <span>Search</span>
+                </a>
+                <a class="nav-item" href="Cart">
+                    <img src="img/cart.png"alt="Cart" class="nav-icon"/>
+                    <span>Cart</span>
+                </a>
+                <a class="nav-item" href="Account">
+                    <img src="img/login.png"alt="Account" class="nav-icon">
+                    <span>Account</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="logo">
+            <img src="img/logo.png" alt="Not of Earth" onclick="location.href='index.html';" /> <!-- 홈으로 이동하는 링크로 변경 -->
+        </div>
+     <!-- About Section with Stickers -->
+    <section class="about-section" id="aboutSection">
+        <div class="sticker-container" id="stickerContainer">
+            <!-- 스티커들이 여기에 동적으로 추가됩니다 -->
+        </div>
+        
+        <div class="click-instruction">
+            <p>Enjoy the web now.</p>
+            <p>Click anywhere to add stickers!</p>
+        </div>
+    </section>
+
+        <script>
+        // 8가지 다른 색상의 SVG 스티커 데이터
+        const stickerData = [
+    'about/img/sticker1.svg',
+    'about/img/sticker2.svg',
+    'about/img/sticker3.svg',
+    'about/img/sticker4.svg',
+    'about/img/sticker5.svg',
+    'about/img/sticker6.svg',
+    'about/img/sticker7.svg',
+    'about/img/sticker8.svg'
+];
+
+        let stickerCount = 0;
+        const totalStickers = 8;
+        let zIndexCounter = 1;
+
+        const aboutSection = document.getElementById('aboutSection');
+        const stickerContainer = document.getElementById('stickerContainer');
+
+        // 클릭 이벤트
+        aboutSection.addEventListener('click', (e) => {
+            addSticker(e.clientX, e.clientY);
+        });
+
+        function addSticker(x, y) {
+            // 현재 스티커 번호 (0-7 순환)
+            const currentSticker = stickerCount % totalStickers;
+            
+            // 스티커 요소 생성
+            const sticker = document.createElement('img');
+            sticker.src = stickerData[currentSticker];
+            sticker.classList.add('sticker');
+            
+            // 랜덤 회전 각도 (-30도 ~ 30도)
+            const rotation = Math.random() * 60 - 30;
+            sticker.style.setProperty('--rotation', `${rotation}deg`);
+            
+            // 위치 설정 (클릭한 위치 중심, 약간의 랜덤 오프셋)
+            const offsetX = (Math.random() - 0.5) * 10;
+            const offsetY = (Math.random() - 0.5) * 10;
+            
+            sticker.style.left = `${x + offsetX}px`;
+            sticker.style.top = `${y + offsetY}px`;
+            sticker.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+            
+            // z-index로 쌓이는 효과
+            sticker.style.zIndex = zIndexCounter++;
+            
+            // 스티커 추가
+            stickerContainer.appendChild(sticker);
+            
+            // 안내 텍스트 숨기기
+            if (stickerCount === 0) {
+                stickerContainer.classList.add('has-stickers');
+            }
+            
+            // 카운터 증가
+            stickerCount++;
+            
+            console.log(`Sticker ${currentSticker + 1} added!`); // 디버깅용
+            
+            // 스티커가 너무 많아지면 오래된 것부터 제거
+            if (stickerContainer.children.length > 30) {
+                stickerContainer.removeChild(stickerContainer.firstChild);
+            }
+        }
+
+        // 마우스 움직임에 반응하는 효과 (선택사항)
+        // document.addEventListener('mousemove', (e) => {
+        //     const stickers = document.querySelectorAll('.sticker');
+            
+        //     stickers.forEach((sticker) => {
+        //         const rect = sticker.getBoundingClientRect();
+        //         const stickerX = rect.left + rect.width / 2;
+        //         const stickerY = rect.top + rect.height / 2;
+                
+        //         const deltaX = e.clientX - stickerX;
+        //         const deltaY = e.clientY - stickerY;
+        //         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                
+        //         if (distance < 150) {
+        //             const force = (150 - distance) / 150;
+        //             const moveX = (deltaX / distance) * force * -8;
+        //             const moveY = (deltaY / distance) * force * -8;
+                    
+        //             const rotation = sticker.style.getPropertyValue('--rotation');
+        //             sticker.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px)) rotate(${rotation})`;
+        //         } else {
+        //             const rotation = sticker.style.getPropertyValue('--rotation');
+        //             sticker.style.transform = `translate(-50%, -50%) rotate(${rotation})`;
+        //         }
+        //     });
+        // });
+
+        console.log('Sticker page loaded! Click anywhere to add stickers.');
+    </script>
+</body>
+</body>
+</html>

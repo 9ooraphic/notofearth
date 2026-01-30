@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="shop/css/style2.css">
+    <link rel="stylesheet" href="https://use.typekit.net/ztk6yvb.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <title>Not of Earth - Shop</title>
+</head>
+<body>
+    <div class="loading" id="loading">
+        Loading Universe...
+    </div>
+
+    <div id="container">
+        <!-- 네비게이션 -->
+        <nav class="nav">
+            </div>
+    <div class="page-wrapper">
+        <div class="header">
+            <div class="nav-left">
+                <a href="about.html" class="nav-item">About</a>
+                <a href="archive.html" class="nav-item">Archive</a>
+                <a href="shop.html" class="nav-item">Shop</a>
+            </div>
+            <div class="nav-right">
+                <a class="nav-item" href="Search">
+                    <img src="img/search.png"alt="Search" class="nav-icon"/>
+                    <span>Search</span>
+                </a>
+                <a class="nav-item" href="Cart">
+                    <img src="img/cart.png"alt="Cart" class="nav-icon"/>
+                    <span>Cart</span>
+                </a>
+                <a class="nav-item" href="Account">
+                    <img src="img/login.png"alt="Account" class="nav-icon">
+                    <span>Account</span>
+                </a>
+            </div>
+            <div class="logo">
+            <img src="img/logo.png" alt="Not of Earth" onclick="location.href='index.html';" /> <!-- 홈으로 이동하는 링크로 변경 -->
+        </div>
+        </div>
+        </nav>
+
+        <!-- 툴팁 -->
+        <div class="tooltip" id="tooltip">
+            <h3 id="tooltip-title"></h3>
+            <div class="description" id="tooltip-description"></div>
+            <div class="price" id="tooltip-price"></div>
+            <button class="view-details" onclick="viewDetails()">View Details</button>
+        </div>
+
+        <!-- 상세 정보 모달 -->
+        <div class="detail-modal" id="detailModal">
+            <div class="detail-content">
+                <button class="detail-close" onclick="closeDetailModal()">✕</button>
+                
+                <div class="detail-left">
+                    <div class="detail-3d-viewer" id="detail3DViewer"></div>
+                    <div class="detail-mineral" id="detailMineralImage"></div>
+                </div>
+                
+                <div class="detail-right">
+                    <div class="detail-header">
+                        <div style="font-size: 20px; margin-bottom: 10px;">✕ Information ✕</div>
+                        <div class="detail-title" id="detailTitle">CHONDRITE</div>
+                        <div class="detail-price" id="detailPrice">₩300,000</div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <div class="detail-description" id="detailDescriptionKo">
+                            코릴라이트 운석은 수천 년 전 벨타니스 행성의 거대한 유성 충돌로 형성된 에루노스 충돌구에서 분리되어 우주로 발사된 희귀 광물체다. 이 운석은 외부는 초록빛 수정 결정으로 덮여 있으며, 내부에는 미세한 유기물 흔적과 외계 미생물 화석이 발견된다. 코릴라이트는 높은 밀도의 규소 성분과 독특한 방사성 입자를 지니고 있어 신비한 광채를 발하며, 만지면 따뜻한 열기를 느낄 수 있다. 극히 희귀한 표면이 탄자 날아 있다.
+                        </div>
+                        
+                        <div class="detail-description-en" id="detailDescriptionEn">
+                            The Corilite meteorite is a rare mineral object that was ejected into space thousands of years ago from the "Erunos Crater," formed by a massive meteorite impact on the planet Veltanis. The meteorite's exterior is covered in greenish crystal formations, while its interior contains traces of microscopic organic matter and fossilized extraterrestrial microorganisms.
+                        </div>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+                        <div class="action-icons">
+                            <div class="action-icon" onclick="shareItem()">🔗</div>
+                            <div class="action-icon" onclick="toggleFavorite()">♡</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script type="text/javascript" src="shop/js/shop.js"></script>
+</body>
+</html>
